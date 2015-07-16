@@ -1,8 +1,8 @@
 """
 Author: Mohamed Kafsi
 
-This code allows for computing the matrix of trajectory entropies associted an
-irreducible finite state Markov chain.
+This code allows for computing the matrix of trajectory entropies associated with
+an irreducible finite state Markov chain.
 
 Definitions and computations can be found
 
