@@ -13,6 +13,8 @@ The example of the MC presented in this script is from the paper
   http://arxiv.org/abs/1212.2831
 
 
-To run the code with an example of a Markov chain given in [2]
+To run the code with the example of Markov chain given in [2]
 
+```python
   python trajectory_entropy.py
+```
