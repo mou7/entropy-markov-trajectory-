@@ -1,6 +1,6 @@
 # entropy-markov-trajectory-
 
-This code allows for computing the matrix of trajectory entropies associated with an irreducible finite state Markov chain.
+To quantify the randomness of Markov trajectories with fixed initial and final states, we need to compute the entropy associated with the distribution of trajectories. The code proposed here allows for computing the matrix of trajectory entropies associated with an irreducible finite state Markov chain.
 
 Definitions and computations can be found
 
