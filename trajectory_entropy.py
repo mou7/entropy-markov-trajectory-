@@ -23,11 +23,11 @@ import scipy.linalg
 def local_entropy(P):
     """Computes the local entropy at each state of the MC defined by the transition
     probabilities P"""
-    # TODO: Not optimal memory wise !!
-    L = np.copy(P)
-    L[P > 0] = np.log2(P[P > 0])
-    K = np.dot(P, np.transpose(L))
-    entropy_out = -1*np.diagonal(K)
+    L = np.zeros_like(P)
+    mask = P > 0
+    L[mask] = np.log2(P[mask])
+    K = np.dot(P, L.T)
+    entropy_out = -1 * np.diagonal(K)
     return entropy_out.reshape((P.shape[0], 1))
 
 
@@ -38,7 +38,8 @@ def stationary_distribution(P):
     distribution
     """
     v = np.real(scipy.linalg.eig(P, left=True, right=False)[1][:, 0])
-    mu = np.abs(v)/np.sum(np.abs(v))
+    mu = np.abs(v)
+    mu /= np.sum(mu)
     return mu
 
 
@@ -53,10 +54,10 @@ def trajectory_entropy(P):
     l_entropy = local_entropy(P)
     H_star = np.tile(l_entropy, (1, n))
     # entropy rate
-    entropy_rate = np.dot(mu.transpose(), l_entropy)
-    H_delta = np.diagflat(entropy_rate/mu)
-    K = np.dot(np.linalg.inv(np.identity(n) - P + A), H_star-H_delta)
-    K_tilda = np.tile(np.diag(K).transpose(), (n, 1))
+    entropy_rate = np.dot(mu.T, l_entropy)
+    H_delta = np.diagflat(entropy_rate / mu)
+    K = np.dot(np.linalg.inv(np.identity(n) - P + A), H_star - H_delta)
+    K_tilda = np.tile(np.diag(K).T, (n, 1))
     H = K - K_tilda + H_delta
     return H
 
