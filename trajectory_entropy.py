@@ -70,6 +70,6 @@ if __name__ == "__main__":
     P[4, 0], P[4, 3] = 0.5, 0.5
     P[4, 0] = 0.5
     np.set_printoptions(precision=3, suppress=True)
-    print "Transition probability matrix \n {}".format(P)
+    print("Transition probability matrix \n {}".format(P))
     H = trajectory_entropy(P)
-    print "Trajectory entropies matrix \n {}".format(H)
+    print("Trajectory entropies matrix \n {}".format(H))
