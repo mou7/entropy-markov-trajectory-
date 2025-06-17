@@ -43,6 +43,10 @@ def stationary_distribution(P):
     if not isinstance(P, np.ndarray) or P.ndim != 2 or P.shape[0] != P.shape[1]:
         raise ValueError("P must be a square numpy array")
     
+    # Check for negative probabilities
+    if np.any(P < 0):
+        raise ValueError("Transition matrix cannot contain negative probabilities")
+    
     # Check if rows sum to 1 (valid transition matrix)
     row_sums = np.sum(P, axis=1)
     if not np.allclose(row_sums, 1.0):
